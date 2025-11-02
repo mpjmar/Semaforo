@@ -6,7 +6,7 @@ public class App {
 	public static final String CLEAR_SCREEN = "\033[H\033[2J";
 
 	public static int cambiaEstado(int estado) {
-		while (estado <= 4)
+		if (estado <= 4)
 			estado = estado == 4 ? 1 : estado + 1;
 		return (estado);
 	}
@@ -19,7 +19,7 @@ public class App {
 		int estado = 0, tiempo, longMensaje;
 		
 		while (true) {
-			//System.out.println(CLEAR_SCREEN);
+			System.out.println(CLEAR_SCREEN);
 			estado = cambiaEstado(estado);
 			switch (estado) {
 				case 1:
@@ -60,7 +60,7 @@ public class App {
 				String.format("%" + (34 - longTitulo) / 2 + "s%s%" + (34 - longTitulo) / 2 + "s", "", titulo, ""));
 
 			System.out.printf("""
-				║ Estado actual: %-10s10s║
+				║ Estado actual: %-10s%10s║
 				║ Tiempo restante: %3d%3s%15s║
 					""",
 					String.format(color + nomColor + RESET), "",
