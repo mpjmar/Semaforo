@@ -19,27 +19,26 @@ public class App {
 		int estado = 0, tiempo, longMensaje;
 		
 		while (true) {
-			System.out.println(CLEAR_SCREEN);
 			estado = cambiaEstado(estado);
 			switch (estado) {
 				case 1:
 					color = GREEN;
 					nomColor = "VERDE";
-					tiempo = 400;
+					tiempo = 4000;
 					mensaje = "¡Puedes avanzar!";
 					longMensaje = mensaje.length();
 					break;
 				case 2:
 					color = YELLOW;
 					nomColor = "AMARILLO";
-					tiempo = 200;
+					tiempo = 2000;
 					mensaje = "Precaución...";
 					longMensaje = mensaje.length();
 					break;
 				case 3:
 					color = RED;
 					nomColor = "ROJO";
-					tiempo = 500;
+					tiempo = 5000;
 					mensaje = "¡Detente!";
 					longMensaje = mensaje.length();
 					break;
@@ -56,25 +55,25 @@ public class App {
 				╔══════════════════════════════════╗
 				║%s║
 				╠══════════════════════════════════╣
-				""",
-				String.format("%" + (34 - longTitulo) / 2 + "s%s%" + (34 - longTitulo) / 2 + "s", "", titulo, ""));
+					""",
+				String.format("%" + Math.ceil((double)(34 - longTitulo) / 2) + "s%s%" + Math.floor((double)(34 - longTitulo) / 2) + "s", "", titulo, ""));
 
 			System.out.printf("""
-				║ Estado actual: %-10s%10s║
-				║ Tiempo restante: %3d%3s%15s║
+				║ Estado actual: %-18s%9s║
+				║ Tiempo restante: %3d %s%9s║
 					""",
-					String.format(color + nomColor + RESET), "",
-					tiempo, String.format(color + "s" + RESET), "");
+					color + nomColor + RESET, "",
+					(tiempo / 1000), color + "seg" + RESET, "");
 
 			System.out.printf("""
 				╠══════════════════════════════════╣
 				║%s║
 				╚══════════════════════════════════╝
 					""",
-				String.format(color + "%" + (34 - longMensaje) / 2 + "%s%" + (34 - longMensaje) / 2 + "s" + RESET, "", mensaje, ""));
+				String.format("%" + Math.ceil(((double)34 - longMensaje) / 2) + "s%s%" + Math.floor((double)(34 - longMensaje) / 2) + "s", "", color + mensaje + RESET, ""));
 
 			Thread.sleep(tiempo);
-
+			System.out.println(CLEAR_SCREEN);
 		}
 	}
 }
